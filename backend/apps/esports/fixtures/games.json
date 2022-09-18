@@ -1,0 +1,50 @@
+[
+    {
+        "model": "esports.game",
+        "pk": 1,
+        "fields": {
+            "title": "Among Us",
+            "banner_url": "https://static-cdn.jtvnw.net/ttv-boxart/510218_IGDB-285x380.jpg"
+        }
+    },
+    {
+        "model": "esports.game",
+        "pk": 2,
+        "fields": {
+            "title": "FIFA 22",
+            "banner_url": "https://static-cdn.jtvnw.net/ttv-boxart/1869092879_IGDB-285x380.jpg"
+        }
+    },
+    {
+        "model": "esports.game",
+        "pk": 3,
+        "fields": {
+            "title": "Fortnite",
+            "banner_url": "https://static-cdn.jtvnw.net/ttv-boxart/33214-285x380.jpg"
+        }
+    },
+    {
+        "model": "esports.game",
+        "pk": 4,
+        "fields": {
+            "title": "Minecraft",
+            "banner_url": "https://static-cdn.jtvnw.net/ttv-boxart/27471_IGDB-285x380.jpg"
+        }
+    },
+    {
+        "model": "esports.game",
+        "pk": 5,
+        "fields": {
+            "title": "Rocket League",
+            "banner_url": "https://static-cdn.jtvnw.net/ttv-boxart/30921-285x380.jpg"
+        }
+    },
+    {
+        "model": "esports.game",
+        "pk": 6,
+        "fields": {
+            "title": "PUBG",
+            "banner_url": "https://static-cdn.jtvnw.net/ttv-boxart/493057-285x380.jpg"
+        }
+    }
+]
