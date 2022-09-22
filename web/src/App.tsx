@@ -25,7 +25,7 @@ function App() {
 	const [loaded, setLoaded] = useState(false)
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
 		initial: 0,
-		loop: false,
+		loop: true,
 		breakpoints: {
 			'(min-width: 640px)': {
 				slides: { perView: 2, spacing: 10 },
