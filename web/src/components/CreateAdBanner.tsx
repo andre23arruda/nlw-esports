@@ -34,7 +34,8 @@ export function CreateAdBanner({ resetSelectedGame }: CreateAdBannerProps) {
 				<div>
 					<strong
 						className="
-							text-2xl
+							text-xl
+							lg:text-2xl
 							text-white
 							font-black
 							block
@@ -42,6 +43,7 @@ export function CreateAdBanner({ resetSelectedGame }: CreateAdBannerProps) {
 					>
 						Não encontrou seu duo?
 					</strong>
+
 					<span className="text-zinc-400 block">
 						Publique um anúncio para encontrar novos players!
 					</span>

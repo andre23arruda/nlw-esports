@@ -25,14 +25,14 @@ export function AdsContainer({ selectedGame }: AdsContainerProps) {
 	const [loaded, setLoaded] = useState(false)
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
 		initial: 0,
-		loop: true,
+		loop: false,
 		mode: 'free-snap',
         breakpoints: {
 			'(min-width: 640px)': {
 				slides: { perView: 2, spacing: 10 },
 			},
 		},
-		slides: { perView: 1 },
+		slides: { perView: 1, spacing: 10 },
 		slideChanged(slider) { setCurrentSlide(slider.track.details.rel) },
 		created() { setLoaded(true) },
 	})

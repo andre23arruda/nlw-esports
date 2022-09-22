@@ -10,7 +10,7 @@ export function Dots({ loaded, instanceRef, currentSlide }: DotsProps) {
     return (
         <>
             { loaded && instanceRef.current && (
-                <div className="flex pt-8 justify-center">
+                <div className="flex pt-4 md:pt-8 justify-center">
                     {
                         [...Array(instanceRef.current.track.details.slides.length).keys()].map((index) => (
                             <button

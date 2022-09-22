@@ -25,17 +25,16 @@ function App() {
 	const [loaded, setLoaded] = useState(false)
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
 		initial: 0,
-		loop: true,
-		mode: 'free-snap',
+		loop: false,
 		breakpoints: {
 			'(min-width: 640px)': {
 				slides: { perView: 2, spacing: 10 },
 			},
 			'(min-width: 768px)': {
-				slides: { perView: 4, spacing: 10 },
+				slides: { perView: 5, spacing: 10 },
 			},
 		},
-		slides: { perView: 1 },
+		slides: { perView: 1, spacing: 10 },
 		slideChanged(slider) { setCurrentSlide(slider.track.details.rel) },
 		created() { setLoaded(true) },
 	})
@@ -57,20 +56,20 @@ function App() {
 				flex
 				flex-col
 				items-center
-				my-8
-				md:my-16
+				my-6
+				md:my-14
 			"
 		>
-			<img src="/logo.svg" className="h-24 md:h-max" alt="Logo" />
+			<img src="/logo.svg" className="h-20 md:h-36" alt="Logo" />
 
 			<h1
 				className="
-					text-3xl
-					lg:text-6xl
+					text-2xl
+					lg:text-5xl
 					text-white
 					font-black
-					mt-8
-					md:mt-20
+					mt-4
+					md:mt-8
 					text-center
 				"
 			>
@@ -92,8 +91,8 @@ function App() {
 						<div
 							className="
 								keen-slider
-								mt-8
-								md:mt-16
+								mt-4
+								md:mt-14
 							"
 							ref={ sliderRef }
 						>
@@ -115,10 +114,6 @@ function App() {
 							currentSlide={ currentSlide }
 							instanceRef={ instanceRef }
 							loaded={ loaded }
-						/>
-
-						<CreateAdBanner
-							resetSelectedGame={ () => setSelectedGame(null) }
 						/>
 
 						<Dialog.Portal>
@@ -153,6 +148,10 @@ function App() {
 
 							</Dialog.Content>
 						</Dialog.Portal>
+
+						<CreateAdBanner
+							resetSelectedGame={ () => setSelectedGame(null) }
+						/>
 					</Dialog.Root>
 				</>
 			)}

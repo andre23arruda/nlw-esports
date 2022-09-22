@@ -11,6 +11,14 @@ interface GameBannerProps {
 }
 
 export function GameBanner({banner_url, title, count, game, setSelectedGame}: GameBannerProps) {
+	function handleClick() {
+		if (count) {
+			setSelectedGame(game)
+		} else {
+			setSelectedGame(null)
+		}
+	}
+
 	return (
 		<Dialog.Trigger>
 			<div
@@ -24,10 +32,10 @@ export function GameBanner({banner_url, title, count, game, setSelectedGame}: Ga
 					transition-all
 					keen-slider__slide
 				"
-				onClick={ () => setSelectedGame(game)}
+				onClick={ handleClick }
 			>
 				<img
-					className="mx-auto w-auto md:w-[95%] rounded-lg"
+					className="mx-auto w-[65%] md:w-[95%] rounded-lg"
 					src={banner_url}
 					alt={ game?.title}
 				/>
