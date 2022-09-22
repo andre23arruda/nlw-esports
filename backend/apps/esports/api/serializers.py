@@ -11,7 +11,10 @@ class AdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
         fields = '__all__'
-        read_only_fields = ['week_days_array', ]
+        read_only_fields = ['week_days_array']
+        extra_kwargs = {
+            'discord': {'write_only': True},
+        }
 
 
 class GameSerializer(serializers.ModelSerializer):

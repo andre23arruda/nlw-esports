@@ -1,7 +1,12 @@
 import { MagnifyingGlassPlus } from 'phosphor-react'
 import * as Dialog from '@radix-ui/react-dialog'
 
-export function CreateAdBanner() {
+interface CreateAdBannerProps {
+	resetSelectedGame: () => void
+}
+
+
+export function CreateAdBanner({ resetSelectedGame }: CreateAdBannerProps) {
 	return (
 		<div
 			className="
@@ -10,15 +15,18 @@ export function CreateAdBanner() {
 				self-stretch
 				rounded-lg
 				mt-8
+				mx-8
+				md:mx-2
 				overflow-hidden
 			"
 		>
 			<div
 				className="
 					bg-[#2A2634]
-					px-8
-					py-6
+					p-6
 					flex
+					flex-col
+					sm:flex-row
 					justify-between
 					items-center
 				"
@@ -43,6 +51,8 @@ export function CreateAdBanner() {
 					className="
 						py-3
 						px-4
+						mt-5
+						md:mt-0
 						bg-violet-500
 						hover:bg-violet-600
 						text-white
@@ -51,9 +61,10 @@ export function CreateAdBanner() {
 						items-center
 						gap-3
 					"
+					onClick={ resetSelectedGame }
 				>
 					<MagnifyingGlassPlus
-						size={24}
+						size={ 24 }
 						className="hidden md:block"
 					/>
 					Publicar anúncio

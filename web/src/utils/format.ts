@@ -7,6 +7,11 @@ export function convertMinutesToTime(duration: number) {
     return timeString
 }
 
+export function getHourFromMinutes(duration: number) {
+    const hours = Math.floor(duration / 60)
+    return `${ hours }h`
+}
+
 export function convertHoursToMinutes(time: string) {
     const [hours, minutes] = time.split(':')
     return (parseInt(hours) * 60 + parseInt(minutes))

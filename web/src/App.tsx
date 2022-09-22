@@ -1,20 +1,44 @@
 import { useEffect, useState } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
+import { useKeenSlider } from 'keen-slider/react'
 
+import { AdsContainer } from './components/AdsContainer'
 import { CreateAdBanner } from './components/CreateAdBanner'
+import { Dots } from './components/Dots'
 import { Form } from './components/Form'
 import { GameBanner } from './components/GameBanner'
+import Loading from './components/Loading'
 
 import { getApi } from './services/api'
 import { Game } from './types/game'
 
+import 'keen-slider/keen-slider.min.css'
 import './styles/main.css'
-import Loading from './components/Loading'
 
 
 function App() {
 	const [games, setGames] = useState<Game[]>([])
+	const [selectedGame, setSelectedGame] = useState<Game | null>(null)
 	const [openDialog, setOpenDialog] = useState(false)
+
+	const [currentSlide, setCurrentSlide] = useState(0)
+	const [loaded, setLoaded] = useState(false)
+	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+		initial: 0,
+		loop: true,
+		mode: 'free-snap',
+		breakpoints: {
+			'(min-width: 640px)': {
+				slides: { perView: 2, spacing: 10 },
+			},
+			'(min-width: 768px)': {
+				slides: { perView: 4, spacing: 10 },
+			},
+		},
+		slides: { perView: 1 },
+		slideChanged(slider) { setCurrentSlide(slider.track.details.rel) },
+		created() { setLoaded(true) },
+	})
 
 	function loadGames() {
 		getApi('games/')
@@ -50,41 +74,52 @@ function App() {
 					text-center
 				"
 			>
-				Seu <span className="text-transparent bg-nlw-gradient bg-clip-text">duo</span> está aqui
+				Seu{' '}
+				<span className="text-transparent bg-nlw-gradient bg-clip-text">
+					duo
+				</span>
+				{' '}está aqui
 			</h1>
 
 			{ !games.length ? (
 				<Loading />
 			) : (
 				<>
-					<div
-						className="
-							grid
-							sm:grid-cols-1
-							md:grid-cols-2
-							lg:grid-cols-6
-							gap-6
-							mt-8
-							md:mt-16
-						"
-					>
-						{ games.map(game => {
-							return (
-								<GameBanner
-									key={game.id}
-									title={game.title}
-									banner_url={game.banner_url}
-									count={game.count}
-								/>
-							)
-						})}
-					</div>
-
 					<Dialog.Root
 						open={openDialog}
 						onOpenChange={setOpenDialog}
 					>
-						<CreateAdBanner />
+						<div
+							className="
+								keen-slider
+								mt-8
+								md:mt-16
+							"
+							ref={ sliderRef }
+						>
+							{ games.map(game => {
+								return (
+									<GameBanner
+										key={game.id}
+										game={ game }
+										title={game.title}
+										banner_url={game.banner_url}
+										count={game.count}
+										setSelectedGame={ setSelectedGame }
+									/>
+								)
+							})}
+						</div>
+
+						<Dots
+							currentSlide={ currentSlide }
+							instanceRef={ instanceRef }
+							loaded={ loaded }
+						/>
+
+						<CreateAdBanner
+							resetSelectedGame={ () => setSelectedGame(null) }
+						/>
 
 						<Dialog.Portal>
 							<Dialog.Overlay className="bg-black/60 inset-0 fixed" />
@@ -107,13 +142,18 @@ function App() {
 									shadow-black/25
 								"
 							>
-								<Form
-									games={ games }
-									loadGames={ loadGames }
-								/>
+								{ selectedGame ? (
+									<AdsContainer selectedGame={ selectedGame }/>
+								) : (
+									<Form
+										games={ games }
+										loadGames={ loadGames }
+									/>
+								)}
+
 							</Dialog.Content>
-				</Dialog.Portal>
-			</Dialog.Root>
+						</Dialog.Portal>
+					</Dialog.Root>
 				</>
 			)}
 		</div>

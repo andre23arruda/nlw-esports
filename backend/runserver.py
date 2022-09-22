@@ -50,6 +50,6 @@ def main():
 
 
 if __name__ == '__main__':
-    put_ip_in_env_file('web', file_pattern='VITE_API_URL')
-    put_ip_in_api_file('mobile')
+    # put_ip_in_env_file('web', file_pattern='VITE_API_URL')
+    # put_ip_in_api_file('mobile')
     main()

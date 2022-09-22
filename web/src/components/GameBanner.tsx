@@ -1,57 +1,71 @@
+import * as Dialog from '@radix-ui/react-dialog'
+import { Game } from '../types/game'
+
+
 interface GameBannerProps {
 	banner_url: string
 	title: string
 	count: number
+	game: Game | null
+	setSelectedGame: React.Dispatch<React.SetStateAction<Game | null>>
 }
 
-export function GameBanner(props: GameBannerProps) {
+export function GameBanner({banner_url, title, count, game, setSelectedGame}: GameBannerProps) {
 	return (
-		<div
-			className="
-				relative
-				rounded-lg
-				overflow-hidden
-				cursor-pointer
-				hover:-translate-y-1
-				hover:brightness-75
-				transition-all
-			"
-		>
-			<img src={props.banner_url} alt="" />
-
+		<Dialog.Trigger>
 			<div
 				className="
-					w-full
-					pt-16
-					pb-4
-					px-4
-					bg-game-gradient
-					absolute
-					bottom-0
-					left-0
-					right-0
+					relative
+					rounded-lg
+					overflow-hidden
+					cursor-pointer
+					hover:-translate-y-1
+					hover:brightness-75
+					transition-all
+					keen-slider__slide
 				"
+				onClick={ () => setSelectedGame(game)}
 			>
-				<strong
-					className="
-						font-bold
-						text-white
-						block
-					"
-				>
-					{ props.title }
-				</strong>
+				<img
+					className="mx-auto w-auto md:w-[95%] rounded-lg"
+					src={banner_url}
+					alt={ game?.title}
+				/>
 
-				<span
+				<div
 					className="
-						text-zinc-300
-						text-sm
-						block
+						w-full
+						pt-16
+						pb-4
+						px-4
+						bg-game-gradient
+						absolute
+						bottom-0
+						left-0
+						right-0
 					"
 				>
-					{ props.count } anúncio(s)
-				</span>
+					<strong
+						className="
+							font-bold
+							text-white
+							block
+						"
+					>
+						{ title }
+					</strong>
+
+					<span
+						className="
+							text-zinc-300
+							text-sm
+							block
+						"
+					>
+						{ count } anúncio(s)
+					</span>
+				</div>
 			</div>
-		</div>
+		</Dialog.Trigger>
 	)
 }

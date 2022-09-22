@@ -7,6 +7,7 @@ import { Input } from './Input'
 import { postApi } from '../../services/api'
 import { Game } from '../../types/game'
 import { convertHoursToMinutes, formatWeekDaysToString } from '../../utils/format'
+import { ButtonClose } from '../ButtonClose'
 
 const week_days_list = [
     {title: 'Domingo', label: 'D', value: 0},
@@ -283,6 +284,8 @@ export function Form({games, loadGames}: FormProps) {
                     </button>
                 </footer>
             </form>
+
+            <ButtonClose />
         </>
 	)
 }
