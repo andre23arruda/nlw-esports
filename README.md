@@ -27,6 +27,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 **A melhor edição da NLW. Aplicação para encontrar parceiros para jogar seu jogo favorito.**
+<div align="center">
+    <img alt="Models" title="Models" src=".github/esports.png" width="350px" />
+</div>
+<p align="center">Models</p>
+<hr>
 
 ## Instalação
 ### Pré requisitos
